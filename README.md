@@ -1,34 +1,34 @@
-RAG-Powered Multi-Agent Q&A Assistant
-Architecture Overview
-This system is a multi-agent Q&A assistant powered by a Retrieval-Augmented Generation (RAG) pipeline. It integrates various components, including document retrieval, embedding generation, and large language models (LLMs) to answer questions based on provided context.
+#RAG-Powered Multi-Agent Q&A Assistant
+##Architecture Overview
+###This system is a multi-agent Q&A assistant powered by a Retrieval-Augmented Generation (RAG) pipeline. It integrates various components, including document retrieval, embedding generation, and large language models (LLMs) to answer questions based on provided context.
 
-Key Components:
-1.Document Chunking & Vectorization: The system reads and chunks text files into smaller pieces, which are then encoded using a Sentence-BERT model to create vector embeddings. These embeddings are stored in a FAISS index, enabling efficient similarity search.
-2.Query Processing: Upon receiving a user query, the system first checks for specific keywords (e.g., "calculate" or "define") to route the query to specialized tools (calculator or dictionary). If no keyword is detected, the system uses the RAG pipeline, retrieving the most relevant document chunks using FAISS similarity search.
-3.LLM Integration: The system uses the GPT-2 model from HuggingFace's transformers library to generate answers based on the retrieved context. The model generates coherent and contextually relevant answers to the user query.
-4.Streamlit Interface: A simple Streamlit interface allows users to input their queries. The results, including the selected tool (if any) and the generated answer, are displayed on the web page.
+##Key Components:
+###1.Document Chunking & Vectorization: The system reads and chunks text files into smaller pieces, which are then encoded using a Sentence-BERT model to create vector embeddings. These embeddings are stored in a FAISS index, enabling efficient similarity search.
+###2.Query Processing: Upon receiving a user query, the system first checks for specific keywords (e.g., "calculate" or "define") to route the query to specialized tools (calculator or dictionary). If no keyword is detected, the system uses the RAG pipeline, retrieving the most relevant document chunks using FAISS similarity search.
+###3.LLM Integration: The system uses the GPT-2 model from HuggingFace's transformers library to generate answers based on the retrieved context. The model generates coherent and contextually relevant answers to the user query.
+###4.Streamlit Interface: A simple Streamlit interface allows users to input their queries. The results, including the selected tool (if any) and the generated answer, are displayed on the web page.
 
-Key Design Choices:
-1.FAISS for Efficient Search: FAISS is used to perform high-speed vector similarity search, ensuring that even with large datasets, the system can retrieve the most relevant chunks quickly.
-2.Sentence-BERT for Embeddings: Sentence-BERT is chosen to generate dense embeddings that capture semantic meaning, allowing for accurate search results even if the query is worded differently than the document.
-3.GPT-2 for Text Generation: GPT-2 is utilized for its capability to generate coherent answers based on the provided context, making it a suitable choice for our Q&A assistant.
-4.Modular Approach: The code is organized into multiple files (agent.py, vector_index.py, tools.py, llm_utils.py, etc.) for maintainability and scalability, each handling a specific part of the process (e.g., chunking, search, LLM integration).
+##Key Design Choices:
+###1.FAISS for Efficient Search: FAISS is used to perform high-speed vector similarity search, ensuring that even with large datasets, the system can retrieve the most relevant chunks quickly.
+###2.Sentence-BERT for Embeddings: Sentence-BERT is chosen to generate dense embeddings that capture semantic meaning, allowing for accurate search results even if the query is worded differently than the document.
+###3.GPT-2 for Text Generation: GPT-2 is utilized for its capability to generate coherent answers based on the provided context, making it a suitable choice for our Q&A assistant.
+###4.Modular Approach: The code is organized into multiple files (agent.py, vector_index.py, tools.py, llm_utils.py, etc.) for maintainability and scalability, each handling a specific part of the process (e.g., chunking, search, LLM integration).
 
-How to Run
-Prerequisites:
-1.Python 3.x
-2.Required Python packages (installed via requirements.txt): faiss, sentence-transformers, transformers, requests, streamlit, dotenv
+##How to Run
+###Prerequisites:
+###1.Python 3.x
+###2.Required Python packages (installed via requirements.txt): faiss, sentence-transformers, transformers, requests, streamlit, dotenv
 
-Installation:
-1.Clone the repository
-2.Install the dependencies
-3.Set up environment variables
+###Installation:
+###1.Clone the repository
+###2.Install the dependencies
+###3.Set up environment variables
 
-Running the System:
-To run the web interface using Streamlit, execute: streamlit run app.py
-This will launch the system in your web browser, where you can enter your queries and receive answers generated by the assistant.
+##Running the System:
+###To run the web interface using Streamlit, execute: streamlit run app.py
+###This will launch the system in your web browser, where you can enter your queries and receive answers generated by the assistant.
 
-Usage:
-step 1:Enter a question in the provided input box (e.g., "What is the return policy?").
-step 2:The system will attempt to retrieve relevant document chunks and generate an answer using the RAG pipeline.
-step 3:If no relevant chunks are found, the assistant will provide a fallback answer.
+##Usage:
+###step 1:Enter a question in the provided input box (e.g., "What is the return policy?").
+###step 2:The system will attempt to retrieve relevant document chunks and generate an answer using the RAG pipeline.
+###step 3:If no relevant chunks are found, the assistant will provide a fallback answer.
