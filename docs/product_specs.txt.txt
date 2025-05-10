@@ -1,0 +1,14 @@
+Product: SmartWatch Pro
+Battery life: 10 days
+Water resistance: Up to 100 meters
+Features: Heart rate monitoring, GPS, sleep tracking, 24/7 activity tracking, fitness coaching.
+
+Product: SmartWatch Air
+Battery life: 7 days
+Water resistance: Up to 50 meters
+Features: Step counting, calorie tracking, notifications, basic heart rate monitoring.
+
+Product: SmartBand X
+Battery life: 5 days
+Water resistance: Up to 30 meters
+Features: Step counting, sleep tracking, heart rate monitoring, lightweight design.
