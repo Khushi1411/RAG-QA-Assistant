@@ -4,11 +4,11 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
-# ✅ Load environment variables from .env file
+# Loaded environment variables from .env file
 load_dotenv()
 
-# ✅ Initialize the Sentence-BERT model
-model = SentenceTransformer('all-MiniLM-L6-v2')  # Use a model like 'all-MiniLM-L6-v2' or another one from Sentence-Transformers
+# Initialize the Sentence-BERT model
+model = SentenceTransformer('all-MiniLM-L6-v2')  
 
 def read_and_chunk_files(folder_path):
     chunks = []
@@ -23,7 +23,7 @@ def read_and_chunk_files(folder_path):
     return chunks
 
 def create_vector_index(chunks):
-    embeddings = model.encode(chunks)  # Directly use SentenceTransformer to get embeddings
+    embeddings = model.encode(chunks)  
     embeddings = np.array(embeddings).astype('float32')
     index = faiss.IndexFlatL2(embeddings.shape[1])
     index.add(embeddings)
@@ -48,7 +48,6 @@ def generate_answer_from_llm(retrieved_chunks, query=""):
     system_prompt = "You are a helpful assistant that answers questions based on the provided context."
     user_prompt = f"Context:\n{context}\n\nQuestion: {query}\nAnswer:"
 
-    # Now using HuggingFace for generating answers instead of OpenAI
     from transformers import pipeline
     generator = pipeline("text-generation", model="gpt2")
     answer = generator(user_prompt, max_length=150)[0]['generated_text']
