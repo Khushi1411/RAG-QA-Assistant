@@ -17,7 +17,7 @@ def define_tool(query):
         if not word:
             return "Please specify a word to define."
         
-        # Simple dictionary API (you can use more advanced ones if needed)
+        # Simple dictionary API 
         url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
         response = requests.get(url)
         if response.status_code == 200:
