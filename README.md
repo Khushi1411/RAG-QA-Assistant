@@ -27,7 +27,7 @@ This project is a smart Q&A assistant that uses a technique called Retrieval-Aug
 
 ### Prerequisites:
 1. Python 3.x
-2. Required Python packages (installed via `requirements.txt`): `faiss`, `sentence-transformers`, `transformers`, `requests`, `streamlit`, `dotenv`
+2. Required Python packages : faiss, sentence-transformers, transformers, requests, streamlit, dotenv
 
 ### Installation:
 1. Clone the repository
