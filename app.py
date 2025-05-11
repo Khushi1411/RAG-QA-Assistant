@@ -1,5 +1,5 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"  # Fix for torch+Streamlit error
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"  
 
 import streamlit as st
 from agent import agent_router, get_retrieved_chunks
@@ -18,11 +18,11 @@ if query:
         answer, decision = agent_router(query)
         retrieved_chunks = get_retrieved_chunks()
 
-    # Show which tool/agent was used
+    # Show which tool was used
     st.markdown("### Agent Decision")
     st.markdown(f"**Tool Used:** {decision}")
 
-    # Show retrieved chunks (if RAG was used)
+    # Show retrieved chunks 
     st.markdown("### Retrieved Context")
     if retrieved_chunks:
         for i, chunk in enumerate(retrieved_chunks):
