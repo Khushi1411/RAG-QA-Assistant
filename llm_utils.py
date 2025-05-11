@@ -4,10 +4,10 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from transformers import pipeline
 
-# Load the Sentence-BERT model
+# Loaded the Sentence-BERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Load text-generation model
+# Loaded text-generation model
 llm = pipeline("text-generation", model="gpt2")
 
 def read_and_chunk_files(folder_path="docs"):
@@ -37,12 +37,12 @@ def search_query(query, index, chunks, top_k=3):
     for i in range(top_k):
         idx = indices[0][i]
         dist = distances[0][i]
-        results.append({'chunk': chunks[idx], 'distance': dist})  # Ensure this is a dictionary
+        results.append({'chunk': chunks[idx], 'distance': dist})  
     return results
 
 from transformers import pipeline
 
-# Function to generate an answer based on relevant chunks
+# Function that generates an answer based on relevant chunks
 def generate_answer_from_chunks(retrieved_chunks, query):
     # Extract relevant context chunks based on the question
     relevant_chunks = []
@@ -60,10 +60,8 @@ def generate_answer_from_chunks(retrieved_chunks, query):
         else:
             relevant_chunks.append(chunk)
 
-    # Combine only relevant chunks for the answer
     context = "\n".join(relevant_chunks)
 
-    # If no context found, return a generic response
     if not context:
         return "Sorry, I couldn't find a clear answer. Please try again later."
 
@@ -77,7 +75,6 @@ Context:
 Question: {query}
 Answer: """
 
-    # Call the model with the updated max_new_tokens
     response = llm(
         prompt,
         max_new_tokens=50,  # Limit output length
@@ -88,10 +85,8 @@ Answer: """
         pad_token_id=50256
     )[0]['generated_text']
 
-    # Clean the response by extracting the answer part
     answer = response.split("Answer:")[-1].strip()
 
-    # Check for empty or irrelevant responses
     if not answer or "Sorry" in answer or answer.lower().startswith("i don't know"):
         return "Sorry, I couldn't find a clear answer. Please try again later."
 
